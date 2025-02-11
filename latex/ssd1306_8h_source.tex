@@ -1,0 +1,57 @@
+\doxysection{ssd1306.\+h}
+\hypertarget{ssd1306_8h_source}{}\label{ssd1306_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ \ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}pico/stdlib.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}hardware/i2c.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ WIDTH\ 128}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ HEIGHT\ 64}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00015\ \ \ SET\_CONTRAST\ =\ 0x81,}
+\DoxyCodeLine{00016\ \ \ SET\_ENTIRE\_ON\ =\ 0xA4,}
+\DoxyCodeLine{00017\ \ \ SET\_NORM\_INV\ =\ 0xA6,}
+\DoxyCodeLine{00018\ \ \ SET\_DISP\ =\ 0xAE,}
+\DoxyCodeLine{00019\ \ \ SET\_MEM\_ADDR\ =\ 0x20,}
+\DoxyCodeLine{00020\ \ \ SET\_COL\_ADDR\ =\ 0x21,}
+\DoxyCodeLine{00021\ \ \ SET\_PAGE\_ADDR\ =\ 0x22,}
+\DoxyCodeLine{00022\ \ \ SET\_DISP\_START\_LINE\ =\ 0x40,}
+\DoxyCodeLine{00023\ \ \ SET\_SEG\_REMAP\ =\ 0xA0,}
+\DoxyCodeLine{00024\ \ \ SET\_MUX\_RATIO\ =\ 0xA8,}
+\DoxyCodeLine{00025\ \ \ SET\_COM\_OUT\_DIR\ =\ 0xC0,}
+\DoxyCodeLine{00026\ \ \ SET\_DISP\_OFFSET\ =\ 0xD3,}
+\DoxyCodeLine{00027\ \ \ SET\_COM\_PIN\_CFG\ =\ 0xDA,}
+\DoxyCodeLine{00028\ \ \ SET\_DISP\_CLK\_DIV\ =\ 0xD5,}
+\DoxyCodeLine{00029\ \ \ SET\_PRECHARGE\ =\ 0xD9,}
+\DoxyCodeLine{00030\ \ \ SET\_VCOM\_DESEL\ =\ 0xDB,}
+\DoxyCodeLine{00031\ \ \ SET\_CHARGE\_PUMP\ =\ 0x8D}
+\DoxyCodeLine{00032\ \}\ ssd1306\_command\_t;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00035\ \ \ uint8\_t\ width,\ height,\ pages,\ address;}
+\DoxyCodeLine{00036\ \ \ i2c\_inst\_t\ *i2c\_port;}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{bool}\ external\_vcc;}
+\DoxyCodeLine{00038\ \ \ uint8\_t\ *ram\_buffer;}
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{size\_t}\ bufsize;}
+\DoxyCodeLine{00040\ \ \ uint8\_t\ port\_buffer[2];}
+\DoxyCodeLine{00041\ \}\ \mbox{\hyperlink{structssd1306__t}{ssd1306\_t}};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ssd1306_8c_a2d5292f8302d16bf49c5fdf15d4b3e98}{ssd1306\_init}}(\mbox{\hyperlink{structssd1306__t}{ssd1306\_t}}\ *\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}},\ uint8\_t\ width,\ uint8\_t\ height,\ \textcolor{keywordtype}{bool}\ external\_vcc,\ uint8\_t\ address,\ i2c\_inst\_t\ *i2c);}
+\DoxyCodeLine{00044\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ssd1306_8c_a9e50a2b01dd8c9b30cd05e14d7daf331}{ssd1306\_config}}(\mbox{\hyperlink{structssd1306__t}{ssd1306\_t}}\ *\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}});}
+\DoxyCodeLine{00045\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ssd1306_8c_a50ff8458e3b2dd7c441106df048d6284}{ssd1306\_command}}(\mbox{\hyperlink{structssd1306__t}{ssd1306\_t}}\ *\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}},\ uint8\_t\ command);}
+\DoxyCodeLine{00046\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ssd1306_8c_a2d68611599dbced339a73b42c6444f1e}{ssd1306\_send\_data}}(\mbox{\hyperlink{structssd1306__t}{ssd1306\_t}}\ *\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}});}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ssd1306_8c_acb8181afd08151c3e855a5f17dba5cc6}{ssd1306\_pixel}}(\mbox{\hyperlink{structssd1306__t}{ssd1306\_t}}\ *\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}},\ uint8\_t\ x,\ uint8\_t\ y,\ \textcolor{keywordtype}{bool}\ value);}
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ssd1306_8c_a77fda9d6f4e907a29a9c8a02a8a4422b}{ssd1306\_fill}}(\mbox{\hyperlink{structssd1306__t}{ssd1306\_t}}\ *\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}},\ \textcolor{keywordtype}{bool}\ value);}
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ssd1306_8c_afab4ff3f86d2d2f3b00b2cd18d254b49}{ssd1306\_rect}}(\mbox{\hyperlink{structssd1306__t}{ssd1306\_t}}\ *\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}},\ uint8\_t\ top,\ uint8\_t\ left,\ uint8\_t\ width,\ uint8\_t\ height,\ \textcolor{keywordtype}{bool}\ value,\ \textcolor{keywordtype}{bool}\ fill);}
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ssd1306_8c_a9da4a08031d6b9aaf4c2cfa2f7648d90}{ssd1306\_line}}(\mbox{\hyperlink{structssd1306__t}{ssd1306\_t}}\ *\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}},\ uint8\_t\ x0,\ uint8\_t\ y0,\ uint8\_t\ x1,\ uint8\_t\ y1,\ \textcolor{keywordtype}{bool}\ value);}
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ssd1306_8c_ac6f790f532331c96af6f9b2f5b432bf7}{ssd1306\_hline}}(\mbox{\hyperlink{structssd1306__t}{ssd1306\_t}}\ *\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}},\ uint8\_t\ x0,\ uint8\_t\ x1,\ uint8\_t\ y,\ \textcolor{keywordtype}{bool}\ value);}
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ssd1306_8c_a2b644c9705b7231dd375fa837d2e2b41}{ssd1306\_vline}}(\mbox{\hyperlink{structssd1306__t}{ssd1306\_t}}\ *\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}},\ uint8\_t\ x,\ uint8\_t\ y0,\ uint8\_t\ y1,\ \textcolor{keywordtype}{bool}\ value);}
+\DoxyCodeLine{00054\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ssd1306_8c_ac40b81dcdd71d81e1ae4f2f5b9ee7fa0}{ssd1306\_draw\_char}}(\mbox{\hyperlink{structssd1306__t}{ssd1306\_t}}\ *\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}},\ \textcolor{keywordtype}{char}\ c,\ uint8\_t\ x,\ uint8\_t\ y);}
+\DoxyCodeLine{00055\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ssd1306_8c_aceb6c2574777c36f09e08346fa4f25ee}{ssd1306\_draw\_string}}(\mbox{\hyperlink{structssd1306__t}{ssd1306\_t}}\ *\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str,\ uint8\_t\ x,\ uint8\_t\ y);}
+
+\end{DoxyCode}

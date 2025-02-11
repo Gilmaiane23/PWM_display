@@ -1,0 +1,297 @@
+\doxysection{ssd1306.\+c File Reference}
+\hypertarget{ssd1306_8c}{}\label{ssd1306_8c}\index{ssd1306.c@{ssd1306.c}}
+
+
+Implementação de funções para controle do display SSD1306 via I2C.  
+
+
+{\ttfamily \#include "{}ssd1306.\+h"{}}\newline
+{\ttfamily \#include "{}font.\+h"{}}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include "{}hardware/i2c.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ssd1306_8c_a2d5292f8302d16bf49c5fdf15d4b3e98}{ssd1306\+\_\+init}} (\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}}, uint8\+\_\+t width, uint8\+\_\+t height, bool external\+\_\+vcc, uint8\+\_\+t address, i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}i2c)
+\begin{DoxyCompactList}\small\item\em Inicializa o display SSD1306. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssd1306_8c_a9e50a2b01dd8c9b30cd05e14d7daf331}{ssd1306\+\_\+config}} (\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}})
+\begin{DoxyCompactList}\small\item\em Configura o display SSD1306 com os parâmetros padrão. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssd1306_8c_a50ff8458e3b2dd7c441106df048d6284}{ssd1306\+\_\+command}} (\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}}, uint8\+\_\+t command)
+\begin{DoxyCompactList}\small\item\em Envia um comando para o display SSD1306. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssd1306_8c_a2d68611599dbced339a73b42c6444f1e}{ssd1306\+\_\+send\+\_\+data}} (\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}})
+\begin{DoxyCompactList}\small\item\em Envia o conteúdo do buffer RAM para o display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssd1306_8c_acb8181afd08151c3e855a5f17dba5cc6}{ssd1306\+\_\+pixel}} (\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}}, uint8\+\_\+t x, uint8\+\_\+t y, bool value)
+\begin{DoxyCompactList}\small\item\em Altera o estado de um único pixel no display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssd1306_8c_a77fda9d6f4e907a29a9c8a02a8a4422b}{ssd1306\+\_\+fill}} (\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}}, bool value)
+\begin{DoxyCompactList}\small\item\em Preenche todo o display com um valor específico. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssd1306_8c_afab4ff3f86d2d2f3b00b2cd18d254b49}{ssd1306\+\_\+rect}} (\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}}, uint8\+\_\+t top, uint8\+\_\+t left, uint8\+\_\+t width, uint8\+\_\+t height, bool value, bool fill)
+\begin{DoxyCompactList}\small\item\em Desenha um retângulo no display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssd1306_8c_a9da4a08031d6b9aaf4c2cfa2f7648d90}{ssd1306\+\_\+line}} (\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}}, uint8\+\_\+t x0, uint8\+\_\+t y0, uint8\+\_\+t x1, uint8\+\_\+t y1, bool value)
+\begin{DoxyCompactList}\small\item\em Desenha uma linha no display utilizando o algoritmo de Bresenham. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssd1306_8c_ac6f790f532331c96af6f9b2f5b432bf7}{ssd1306\+\_\+hline}} (\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}}, uint8\+\_\+t x0, uint8\+\_\+t x1, uint8\+\_\+t y, bool value)
+\begin{DoxyCompactList}\small\item\em Desenha uma linha horizontal no display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssd1306_8c_a2b644c9705b7231dd375fa837d2e2b41}{ssd1306\+\_\+vline}} (\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}}, uint8\+\_\+t x, uint8\+\_\+t y0, uint8\+\_\+t y1, bool value)
+\begin{DoxyCompactList}\small\item\em Desenha uma linha vertical no display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssd1306_8c_ac40b81dcdd71d81e1ae4f2f5b9ee7fa0}{ssd1306\+\_\+draw\+\_\+char}} (\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}}, char c, uint8\+\_\+t x, uint8\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Desenha um caractere no display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ssd1306_8c_aceb6c2574777c36f09e08346fa4f25ee}{ssd1306\+\_\+draw\+\_\+string}} (\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}{ssd}}, const char \texorpdfstring{$\ast$}{*}str, uint8\+\_\+t x, uint8\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Desenha uma string no display. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementação de funções para controle do display SSD1306 via I2C. 
+
+Este arquivo contém as funções para inicialização, configuração e controle de um display SSD1306 utilizando a interface I2C. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{ssd1306_8c_a50ff8458e3b2dd7c441106df048d6284}\index{ssd1306.c@{ssd1306.c}!ssd1306\_command@{ssd1306\_command}}
+\index{ssd1306\_command@{ssd1306\_command}!ssd1306.c@{ssd1306.c}}
+\doxysubsubsection{\texorpdfstring{ssd1306\_command()}{ssd1306\_command()}}
+{\footnotesize\ttfamily \label{ssd1306_8c_a50ff8458e3b2dd7c441106df048d6284} 
+void ssd1306\+\_\+command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ssd}{, }\item[{uint8\+\_\+t}]{command}{}\end{DoxyParamCaption})}
+
+
+
+Envia um comando para o display SSD1306. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssd} & Ponteiro para a estrutura \doxylink{structssd1306__t}{ssd1306\+\_\+t}. \\
+\hline
+{\em command} & Comando a ser enviado ao display. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ssd1306_8c_a9e50a2b01dd8c9b30cd05e14d7daf331}\index{ssd1306.c@{ssd1306.c}!ssd1306\_config@{ssd1306\_config}}
+\index{ssd1306\_config@{ssd1306\_config}!ssd1306.c@{ssd1306.c}}
+\doxysubsubsection{\texorpdfstring{ssd1306\_config()}{ssd1306\_config()}}
+{\footnotesize\ttfamily \label{ssd1306_8c_a9e50a2b01dd8c9b30cd05e14d7daf331} 
+void ssd1306\+\_\+config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ssd}{}\end{DoxyParamCaption})}
+
+
+
+Configura o display SSD1306 com os parâmetros padrão. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssd} & Ponteiro para a estrutura \doxylink{structssd1306__t}{ssd1306\+\_\+t}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ssd1306_8c_ac40b81dcdd71d81e1ae4f2f5b9ee7fa0}\index{ssd1306.c@{ssd1306.c}!ssd1306\_draw\_char@{ssd1306\_draw\_char}}
+\index{ssd1306\_draw\_char@{ssd1306\_draw\_char}!ssd1306.c@{ssd1306.c}}
+\doxysubsubsection{\texorpdfstring{ssd1306\_draw\_char()}{ssd1306\_draw\_char()}}
+{\footnotesize\ttfamily \label{ssd1306_8c_ac40b81dcdd71d81e1ae4f2f5b9ee7fa0} 
+void ssd1306\+\_\+draw\+\_\+char (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ssd}{, }\item[{char}]{c}{, }\item[{uint8\+\_\+t}]{x}{, }\item[{uint8\+\_\+t}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Desenha um caractere no display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssd} & Ponteiro para a estrutura \doxylink{structssd1306__t}{ssd1306\+\_\+t}. \\
+\hline
+{\em c} & Caractere a ser desenhado. \\
+\hline
+{\em x} & Coordenada X inicial do caractere. \\
+\hline
+{\em y} & Coordenada Y inicial do caractere. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ssd1306_8c_aceb6c2574777c36f09e08346fa4f25ee}\index{ssd1306.c@{ssd1306.c}!ssd1306\_draw\_string@{ssd1306\_draw\_string}}
+\index{ssd1306\_draw\_string@{ssd1306\_draw\_string}!ssd1306.c@{ssd1306.c}}
+\doxysubsubsection{\texorpdfstring{ssd1306\_draw\_string()}{ssd1306\_draw\_string()}}
+{\footnotesize\ttfamily \label{ssd1306_8c_aceb6c2574777c36f09e08346fa4f25ee} 
+void ssd1306\+\_\+draw\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ssd}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{str}{, }\item[{uint8\+\_\+t}]{x}{, }\item[{uint8\+\_\+t}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Desenha uma string no display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssd} & Ponteiro para a estrutura \doxylink{structssd1306__t}{ssd1306\+\_\+t}. \\
+\hline
+{\em str} & Ponteiro para a string a ser desenhada. \\
+\hline
+{\em x} & Coordenada X inicial da string. \\
+\hline
+{\em y} & Coordenada Y inicial da string. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ssd1306_8c_a77fda9d6f4e907a29a9c8a02a8a4422b}\index{ssd1306.c@{ssd1306.c}!ssd1306\_fill@{ssd1306\_fill}}
+\index{ssd1306\_fill@{ssd1306\_fill}!ssd1306.c@{ssd1306.c}}
+\doxysubsubsection{\texorpdfstring{ssd1306\_fill()}{ssd1306\_fill()}}
+{\footnotesize\ttfamily \label{ssd1306_8c_a77fda9d6f4e907a29a9c8a02a8a4422b} 
+void ssd1306\+\_\+fill (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ssd}{, }\item[{bool}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Preenche todo o display com um valor específico. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssd} & Ponteiro para a estrutura \doxylink{structssd1306__t}{ssd1306\+\_\+t}. \\
+\hline
+{\em value} & Valor a ser preenchido (true para aceso, false para apagado). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ssd1306_8c_ac6f790f532331c96af6f9b2f5b432bf7}\index{ssd1306.c@{ssd1306.c}!ssd1306\_hline@{ssd1306\_hline}}
+\index{ssd1306\_hline@{ssd1306\_hline}!ssd1306.c@{ssd1306.c}}
+\doxysubsubsection{\texorpdfstring{ssd1306\_hline()}{ssd1306\_hline()}}
+{\footnotesize\ttfamily \label{ssd1306_8c_ac6f790f532331c96af6f9b2f5b432bf7} 
+void ssd1306\+\_\+hline (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ssd}{, }\item[{uint8\+\_\+t}]{x0}{, }\item[{uint8\+\_\+t}]{x1}{, }\item[{uint8\+\_\+t}]{y}{, }\item[{bool}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Desenha uma linha horizontal no display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssd} & Ponteiro para a estrutura \doxylink{structssd1306__t}{ssd1306\+\_\+t}. \\
+\hline
+{\em x0} & Coordenada X inicial. \\
+\hline
+{\em x1} & Coordenada X final. \\
+\hline
+{\em y} & Coordenada Y da linha. \\
+\hline
+{\em value} & Valor dos pixels (true para aceso, false para apagado). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ssd1306_8c_a2d5292f8302d16bf49c5fdf15d4b3e98}\index{ssd1306.c@{ssd1306.c}!ssd1306\_init@{ssd1306\_init}}
+\index{ssd1306\_init@{ssd1306\_init}!ssd1306.c@{ssd1306.c}}
+\doxysubsubsection{\texorpdfstring{ssd1306\_init()}{ssd1306\_init()}}
+{\footnotesize\ttfamily \label{ssd1306_8c_a2d5292f8302d16bf49c5fdf15d4b3e98} 
+void ssd1306\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ssd}{, }\item[{uint8\+\_\+t}]{width}{, }\item[{uint8\+\_\+t}]{height}{, }\item[{bool}]{external\+\_\+vcc}{, }\item[{uint8\+\_\+t}]{address}{, }\item[{i2c\+\_\+inst\+\_\+t \texorpdfstring{$\ast$}{*}}]{i2c}{}\end{DoxyParamCaption})}
+
+
+
+Inicializa o display SSD1306. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssd} & Ponteiro para a estrutura \doxylink{structssd1306__t}{ssd1306\+\_\+t}. \\
+\hline
+{\em width} & Largura do display em pixels. \\
+\hline
+{\em height} & Altura do display em pixels. \\
+\hline
+{\em external\+\_\+vcc} & Indica se o display utiliza alimentação externa. \\
+\hline
+{\em address} & Endereço I2C do display. \\
+\hline
+{\em i2c} & Instância do periférico I2C utilizado. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ssd1306_8c_a9da4a08031d6b9aaf4c2cfa2f7648d90}\index{ssd1306.c@{ssd1306.c}!ssd1306\_line@{ssd1306\_line}}
+\index{ssd1306\_line@{ssd1306\_line}!ssd1306.c@{ssd1306.c}}
+\doxysubsubsection{\texorpdfstring{ssd1306\_line()}{ssd1306\_line()}}
+{\footnotesize\ttfamily \label{ssd1306_8c_a9da4a08031d6b9aaf4c2cfa2f7648d90} 
+void ssd1306\+\_\+line (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ssd}{, }\item[{uint8\+\_\+t}]{x0}{, }\item[{uint8\+\_\+t}]{y0}{, }\item[{uint8\+\_\+t}]{x1}{, }\item[{uint8\+\_\+t}]{y1}{, }\item[{bool}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Desenha uma linha no display utilizando o algoritmo de Bresenham. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssd} & Ponteiro para a estrutura \doxylink{structssd1306__t}{ssd1306\+\_\+t}. \\
+\hline
+{\em x0} & Coordenada X inicial. \\
+\hline
+{\em y0} & Coordenada Y inicial. \\
+\hline
+{\em x1} & Coordenada X final. \\
+\hline
+{\em y1} & Coordenada Y final. \\
+\hline
+{\em value} & Valor dos pixels (true para aceso, false para apagado). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ssd1306_8c_acb8181afd08151c3e855a5f17dba5cc6}\index{ssd1306.c@{ssd1306.c}!ssd1306\_pixel@{ssd1306\_pixel}}
+\index{ssd1306\_pixel@{ssd1306\_pixel}!ssd1306.c@{ssd1306.c}}
+\doxysubsubsection{\texorpdfstring{ssd1306\_pixel()}{ssd1306\_pixel()}}
+{\footnotesize\ttfamily \label{ssd1306_8c_acb8181afd08151c3e855a5f17dba5cc6} 
+void ssd1306\+\_\+pixel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ssd}{, }\item[{uint8\+\_\+t}]{x}{, }\item[{uint8\+\_\+t}]{y}{, }\item[{bool}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Altera o estado de um único pixel no display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssd} & Ponteiro para a estrutura \doxylink{structssd1306__t}{ssd1306\+\_\+t}. \\
+\hline
+{\em x} & Coordenada X do pixel. \\
+\hline
+{\em y} & Coordenada Y do pixel. \\
+\hline
+{\em value} & Valor do pixel (true para aceso, false para apagado). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ssd1306_8c_afab4ff3f86d2d2f3b00b2cd18d254b49}\index{ssd1306.c@{ssd1306.c}!ssd1306\_rect@{ssd1306\_rect}}
+\index{ssd1306\_rect@{ssd1306\_rect}!ssd1306.c@{ssd1306.c}}
+\doxysubsubsection{\texorpdfstring{ssd1306\_rect()}{ssd1306\_rect()}}
+{\footnotesize\ttfamily \label{ssd1306_8c_afab4ff3f86d2d2f3b00b2cd18d254b49} 
+void ssd1306\+\_\+rect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ssd}{, }\item[{uint8\+\_\+t}]{top}{, }\item[{uint8\+\_\+t}]{left}{, }\item[{uint8\+\_\+t}]{width}{, }\item[{uint8\+\_\+t}]{height}{, }\item[{bool}]{value}{, }\item[{bool}]{fill}{}\end{DoxyParamCaption})}
+
+
+
+Desenha um retângulo no display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssd} & Ponteiro para a estrutura \doxylink{structssd1306__t}{ssd1306\+\_\+t}. \\
+\hline
+{\em top} & Coordenada superior do retângulo. \\
+\hline
+{\em left} & Coordenada esquerda do retângulo. \\
+\hline
+{\em width} & Largura do retângulo. \\
+\hline
+{\em height} & Altura do retângulo. \\
+\hline
+{\em value} & Valor dos pixels (true para aceso, false para apagado). \\
+\hline
+{\em fill} & Indica se o retângulo será preenchido. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ssd1306_8c_a2d68611599dbced339a73b42c6444f1e}\index{ssd1306.c@{ssd1306.c}!ssd1306\_send\_data@{ssd1306\_send\_data}}
+\index{ssd1306\_send\_data@{ssd1306\_send\_data}!ssd1306.c@{ssd1306.c}}
+\doxysubsubsection{\texorpdfstring{ssd1306\_send\_data()}{ssd1306\_send\_data()}}
+{\footnotesize\ttfamily \label{ssd1306_8c_a2d68611599dbced339a73b42c6444f1e} 
+void ssd1306\+\_\+send\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ssd}{}\end{DoxyParamCaption})}
+
+
+
+Envia o conteúdo do buffer RAM para o display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssd} & Ponteiro para a estrutura \doxylink{structssd1306__t}{ssd1306\+\_\+t}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ssd1306_8c_a2b644c9705b7231dd375fa837d2e2b41}\index{ssd1306.c@{ssd1306.c}!ssd1306\_vline@{ssd1306\_vline}}
+\index{ssd1306\_vline@{ssd1306\_vline}!ssd1306.c@{ssd1306.c}}
+\doxysubsubsection{\texorpdfstring{ssd1306\_vline()}{ssd1306\_vline()}}
+{\footnotesize\ttfamily \label{ssd1306_8c_a2b644c9705b7231dd375fa837d2e2b41} 
+void ssd1306\+\_\+vline (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ssd}{, }\item[{uint8\+\_\+t}]{x}{, }\item[{uint8\+\_\+t}]{y0}{, }\item[{uint8\+\_\+t}]{y1}{, }\item[{bool}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Desenha uma linha vertical no display. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssd} & Ponteiro para a estrutura \doxylink{structssd1306__t}{ssd1306\+\_\+t}. \\
+\hline
+{\em x} & Coordenada X da linha. \\
+\hline
+{\em y0} & Coordenada Y inicial. \\
+\hline
+{\em y1} & Coordenada Y final. \\
+\hline
+{\em value} & Valor dos pixels (true para aceso, false para apagado). \\
+\hline
+\end{DoxyParams}

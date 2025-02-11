@@ -1,0 +1,190 @@
+\doxysection{PWM\+\_\+display.\+c File Reference}
+\hypertarget{_p_w_m__display_8c}{}\label{_p_w_m__display_8c}\index{PWM\_display.c@{PWM\_display.c}}
+
+
+Controle de servo e LED com PWM, incluindo exibição no display SSD1306.  
+
+
+{\ttfamily \#include "{}pico/stdlib.\+h"{}}\newline
+{\ttfamily \#include "{}hardware/pwm.\+h"{}}\newline
+{\ttfamily \#include "{}hardware/irq.\+h"{}}\newline
+{\ttfamily \#include "{}hardware/clocks.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include "{}ssd1306.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_p_w_m__display_8c_ad9ecf80e1eac083d16ec47f9d3aeb39f}\label{_p_w_m__display_8c_ad9ecf80e1eac083d16ec47f9d3aeb39f} 
+\#define {\bfseries I2\+C\+\_\+\+PORT}~i2c1
+\begin{DoxyCompactList}\small\item\em Porta I2C. \end{DoxyCompactList}\item 
+\Hypertarget{_p_w_m__display_8c_a18aefd12ad84d4c33dc97923cb821e47}\label{_p_w_m__display_8c_a18aefd12ad84d4c33dc97923cb821e47} 
+\#define {\bfseries I2\+C\+\_\+\+SDA}~14
+\begin{DoxyCompactList}\small\item\em Pino SDA do I2C. \end{DoxyCompactList}\item 
+\Hypertarget{_p_w_m__display_8c_a212ca328a6409c98f8c3dfbbe1ba561d}\label{_p_w_m__display_8c_a212ca328a6409c98f8c3dfbbe1ba561d} 
+\#define {\bfseries I2\+C\+\_\+\+SCL}~15
+\begin{DoxyCompactList}\small\item\em Pino SCL do I2C. \end{DoxyCompactList}\item 
+\Hypertarget{_p_w_m__display_8c_a515a6d2291b5a3da8c505711d30696c1}\label{_p_w_m__display_8c_a515a6d2291b5a3da8c505711d30696c1} 
+\#define {\bfseries ENDERECO}~0x3C
+\begin{DoxyCompactList}\small\item\em Endereço I2C do display SSD1306. \end{DoxyCompactList}\item 
+\Hypertarget{_p_w_m__display_8c_a3d62c2d0eb44f28e242392b43ff958b3}\label{_p_w_m__display_8c_a3d62c2d0eb44f28e242392b43ff958b3} 
+\#define {\bfseries SERVO\+\_\+\+GPIO}~20
+\begin{DoxyCompactList}\small\item\em Pino GPIO do servo motor. \end{DoxyCompactList}\item 
+\Hypertarget{_p_w_m__display_8c_a843b341668408e5656cf19cf3389bb5a}\label{_p_w_m__display_8c_a843b341668408e5656cf19cf3389bb5a} 
+\#define {\bfseries LED\+\_\+\+GPIO}~12
+\begin{DoxyCompactList}\small\item\em Pino GPIO do LED RGB. \end{DoxyCompactList}\item 
+\Hypertarget{_p_w_m__display_8c_a76fe84d83b8d236bd4f0d20d7e2ed06f}\label{_p_w_m__display_8c_a76fe84d83b8d236bd4f0d20d7e2ed06f} 
+\#define {\bfseries PWM\+\_\+\+FREQ}~50
+\begin{DoxyCompactList}\small\item\em Frequência do PWM (50Hz) \end{DoxyCompactList}\item 
+\Hypertarget{_p_w_m__display_8c_aa840a0ac3b87cf7c89b265e1912cbb5b}\label{_p_w_m__display_8c_aa840a0ac3b87cf7c89b265e1912cbb5b} 
+\#define {\bfseries PERIOD\+\_\+\+US}~20000
+\begin{DoxyCompactList}\small\item\em Período do PWM (20ms) \end{DoxyCompactList}\item 
+\Hypertarget{_p_w_m__display_8c_adc7e59eed8e42ab586f1f71dab7d882d}\label{_p_w_m__display_8c_adc7e59eed8e42ab586f1f71dab7d882d} 
+\#define {\bfseries STEP\+\_\+\+DELAY}~10
+\begin{DoxyCompactList}\small\item\em Atraso entre mudanças de posição (ms) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_p_w_m__display_8c_a075d549ae02198beb122f0f4a73afff4}{set\+\_\+pwm\+\_\+duty}} (uint gpio, uint16\+\_\+t duty\+\_\+us)
+\begin{DoxyCompactList}\small\item\em Configura o ciclo de trabalho (duty cycle) do PWM para um pino específico. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_p_w_m__display_8c_ab9258d5c24e137f7b28d42a2b92be4ef}{wrap\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Manipulador de interrupção para atualizar o ciclo de trabalho do servo e LED. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_p_w_m__display_8c_aed09e26d0e2c7e4f50af31754453c9a4}{pwm\+\_\+setup\+\_\+irq}} (uint gpio)
+\begin{DoxyCompactList}\small\item\em Configura o PWM e as interrupções para os pinos de servo e LED. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_p_w_m__display_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Função principal do programa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0}\label{_p_w_m__display_8c_ae059db6ae3fe079e28c875fd30a753a0} 
+\mbox{\hyperlink{structssd1306__t}{ssd1306\+\_\+t}} {\bfseries ssd}
+\begin{DoxyCompactList}\small\item\em Estrutura do display SSD1306. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controle de servo e LED com PWM, incluindo exibição no display SSD1306. 
+
+Este código controla um servo motor e um LED RGB com PWM, alternando entre os ângulos de 0°, 90° e 180°. A cada mudança de posição do servo, uma mensagem correspondente é exibida no display SSD1306. Também são utilizadas interrupções para atualizar os valores de PWM e exibir mensagens no display.
+
+\begin{DoxyAuthor}{Author}
+Gilmaiane 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/02-\/11 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_p_w_m__display_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{PWM\_display.c@{PWM\_display.c}!main@{main}}
+\index{main@{main}!PWM\_display.c@{PWM\_display.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{_p_w_m__display_8c_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Função principal do programa. 
+
+A função principal realiza a configuração do I2C, inicializa o display SSD1306 e configura o servo motor e LED com PWM. Ela também exibe mensagens de 180°, 90° e 0° no display durante a movimentação do servo, além de configurar as interrupções do PWM.
+
+\begin{DoxyReturn}{Returns}
+int Código de saída do programa. 
+\end{DoxyReturn}
+\texorpdfstring{$<$}{<} Inicializa as funções padrão
+
+\texorpdfstring{$<$}{<} Inicializa o display
+
+\texorpdfstring{$<$}{<} Configura o display
+
+\texorpdfstring{$<$}{<} Envia os dados para o display
+
+\texorpdfstring{$<$}{<} Configura PWM para o servo
+
+\texorpdfstring{$<$}{<} Configura PWM para o LED\Hypertarget{_p_w_m__display_8c_aed09e26d0e2c7e4f50af31754453c9a4}\index{PWM\_display.c@{PWM\_display.c}!pwm\_setup\_irq@{pwm\_setup\_irq}}
+\index{pwm\_setup\_irq@{pwm\_setup\_irq}!PWM\_display.c@{PWM\_display.c}}
+\doxysubsubsection{\texorpdfstring{pwm\_setup\_irq()}{pwm\_setup\_irq()}}
+{\footnotesize\ttfamily \label{_p_w_m__display_8c_aed09e26d0e2c7e4f50af31754453c9a4} 
+void pwm\+\_\+setup\+\_\+irq (\begin{DoxyParamCaption}\item[{uint}]{gpio}{}\end{DoxyParamCaption})}
+
+
+
+Configura o PWM e as interrupções para os pinos de servo e LED. 
+
+Esta função configura o PWM nos pinos de servo e LED, e habilita as interrupções para atualizar o ciclo de trabalho.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpio} & Pino GPIO onde o PWM será configurado. \\
+\hline
+\end{DoxyParams}
+\texorpdfstring{$<$}{<} Obtém o número do slice do PWM
+
+\texorpdfstring{$<$}{<} Configura o GPIO como PWM
+
+\texorpdfstring{$<$}{<} Limpa qualquer interrupção pendente
+
+\texorpdfstring{$<$}{<} Habilita a interrupção do PWM
+
+\texorpdfstring{$<$}{<} Define o manipulador de interrupção
+
+\texorpdfstring{$<$}{<} Habilita a interrupção no sistema
+
+\texorpdfstring{$<$}{<} Obtém configuração padrão do PWM
+
+\texorpdfstring{$<$}{<} Define o divisor de clock
+
+\texorpdfstring{$<$}{<} Inicializa o PWM\Hypertarget{_p_w_m__display_8c_a075d549ae02198beb122f0f4a73afff4}\index{PWM\_display.c@{PWM\_display.c}!set\_pwm\_duty@{set\_pwm\_duty}}
+\index{set\_pwm\_duty@{set\_pwm\_duty}!PWM\_display.c@{PWM\_display.c}}
+\doxysubsubsection{\texorpdfstring{set\_pwm\_duty()}{set\_pwm\_duty()}}
+{\footnotesize\ttfamily \label{_p_w_m__display_8c_a075d549ae02198beb122f0f4a73afff4} 
+void set\+\_\+pwm\+\_\+duty (\begin{DoxyParamCaption}\item[{uint}]{gpio}{, }\item[{uint16\+\_\+t}]{duty\+\_\+us}{}\end{DoxyParamCaption})}
+
+
+
+Configura o ciclo de trabalho (duty cycle) do PWM para um pino específico. 
+
+Esta função define o ciclo de trabalho do PWM de acordo com o valor fornecido para o pino GPIO especificado.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpio} & Pino GPIO onde o PWM será aplicado. \\
+\hline
+{\em duty\+\_\+us} & Ciclo de trabalho do PWM em microssegundos. \\
+\hline
+\end{DoxyParams}
+\texorpdfstring{$<$}{<} Obtém o slice do PWM
+
+\texorpdfstring{$<$}{<} Calcula o wrap
+
+\texorpdfstring{$<$}{<} Define o valor de wrap
+
+\texorpdfstring{$<$}{<} Define o nível de ciclo ativo
+
+\texorpdfstring{$<$}{<} Habilita o PWM\Hypertarget{_p_w_m__display_8c_ab9258d5c24e137f7b28d42a2b92be4ef}\index{PWM\_display.c@{PWM\_display.c}!wrapHandler@{wrapHandler}}
+\index{wrapHandler@{wrapHandler}!PWM\_display.c@{PWM\_display.c}}
+\doxysubsubsection{\texorpdfstring{wrapHandler()}{wrapHandler()}}
+{\footnotesize\ttfamily \label{_p_w_m__display_8c_ab9258d5c24e137f7b28d42a2b92be4ef} 
+void wrap\+Handler (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Manipulador de interrupção para atualizar o ciclo de trabalho do servo e LED. 
+
+Este manipulador é acionado por uma interrupção do PWM, e alterna entre os ciclos de aumento e diminuição do ciclo de trabalho do servo e LED. A cada mudança de posição do servo (0°, 90°, 180°), uma mensagem é exibida no display. \texorpdfstring{$<$}{<} Ciclo de trabalho do PWM
+
+\texorpdfstring{$<$}{<} Indica se o ciclo de trabalho está aumentando
+
+\texorpdfstring{$<$}{<} Flag para inicialização
+
+\texorpdfstring{$<$}{<} Obtém slice do PWM do servo
+
+\texorpdfstring{$<$}{<} Obtém slice do PWM do LED
+
+\texorpdfstring{$<$}{<} Limpa interrupção do PWM do servo
+
+\texorpdfstring{$<$}{<} Limpa interrupção do PWM do LED
+
+\texorpdfstring{$<$}{<} Garante que a oscilação comece em 0°
+
+\texorpdfstring{$<$}{<} Define o ciclo de trabalho do servo
+
+\texorpdfstring{$<$}{<} Define o ciclo de trabalho do LED baseado no quadrado do duty cycle

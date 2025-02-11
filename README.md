@@ -1,4 +1,4 @@
-# Controle de Servo Motor e Display OLED com Raspberry Pi Pico
+# Controle de Servo Motor e LED usando PWM + Display OLED com Raspberry Pi Pico
 
 ## Descrição
 Este projeto implementa o controle de um servo motor e um LED via PWM utilizando o Raspberry Pi Pico. Além disso, um display OLED SSD1306 é utilizado para exibir informações sobre a posição do servo.
